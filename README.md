@@ -9,5 +9,7 @@ https://www.kaggle.com/competitions/google-gemma-3n-hackathon
 
 - Support for uploading multiple PDF documents.
 - The application connects to a PostgreSQL database for storing and retrieving structured data.
-- A simple user interface
+- A simple user interface (/webapp) + 
 - Customized system prompts
+
+![userinterface](C:\Users\ahmet\Desktop\Tr-PDFtoSyntheticData\README.md)
