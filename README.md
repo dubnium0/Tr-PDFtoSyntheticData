@@ -12,4 +12,4 @@ https://www.kaggle.com/competitions/google-gemma-3n-hackathon
 - A simple user interface (/webapp) + 
 - Customized system prompts
 
-![userinterface](C:\Users\ahmet\Desktop\Tr-PDFtoSyntheticData\README.md)
+![userinterface](ss.png)
