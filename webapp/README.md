@@ -1,59 +1,59 @@
-# Türkçe Finansal PDF'ten Sentetik Veri Üretimi Web Uygulaması
+# Turkish Financial PDF to Synthetic Data Generation Web Application
 
-## Uygulamanın Amacı
-Bu uygulama, Türkçe finansal PDF dosyalarından sentetik soru-cevap (instruction) veri seti üretmek için geliştirilmiştir. Amaç, finansal okuryazarlık alanında eğitim ve yapay zeka uygulamaları için otomatik, kaliteli ve bağlama uygun veri üretmektir.
+## Purpose of the Application
+This application is developed to generate synthetic question-answer (instruction) datasets from Turkish financial PDF documents. The aim is to produce automatic, high-quality, and contextually appropriate data for financial literacy education and artificial intelligence applications.
 
-## Temel Özellikler
-- PDF dosyasından metin çıkarımı ve parçalara ayırma
-- LangChain ile vektör tabanlı doküman arama (retrieval)
-- Ollama (ör: gemma3n:e4b) ile LLM tabanlı soru ve cevap üretimi
-- Kullanıcıdan özel prompt (soru/cevap şablonu) alma imkanı
-- Sonuçları ekranda görme ve JSON olarak indirme
-- Streamlit tabanlı modern ve kolay arayüz
+## Key Features
+- Text extraction and chunking from PDF files
+- Vector-based document retrieval using LangChain
+- LLM-based question and answer generation with Ollama (e.g., gemma3n:e4b)
+- Ability to accept custom prompts (question/answer templates) from users
+- View results on screen and download as JSON
+- Modern and user-friendly interface based on Streamlit
 
-## Yapılan Başlıca İşler
-- FastAPI ile PDF işleme ve LLM entegrasyonu
-- Streamlit ile kullanıcı dostu frontend
-- HuggingFace sentence-transformers ile embedding işlemleri
-- Docker ile kolay dağıtım ve çalıştırma
-- Backend hazır olmadan frontend'in başlamasını engelleyen script
-- GPU desteği (Ollama ve embedding modelleri için uygun ortamda otomatik)
-- Kullanıcıdan özel prompt ve soru adedi alma
-- PDF işlenirken ilerleme çubuğu
-- Gereksiz yorum ve açıklama satırlarının temizlenmesi
+## Main Implementations
+- PDF processing and LLM integration with FastAPI
+- User-friendly frontend with Streamlit
+- Embedding operations with HuggingFace sentence-transformers
+- Easy deployment and execution with Docker
+- Script preventing frontend from starting before backend is ready
+- GPU support (automatic in suitable environments for Ollama and embedding models)
+- Accepting custom prompts and question quantity from users
+- Progress bar during PDF processing
+- Cleaning of unnecessary comments and explanation lines
 
-## Gereksinimler
-- Docker (ve tercihen NVIDIA GPU ile CUDA sürücüleri)
-- Host makinede Ollama kurulu ve model (ör: gemma3n:e4b) indirilmiş olmalı
+## Requirements
+- Docker (and preferably NVIDIA GPU with CUDA drivers)
+- Ollama installed on the host machine with the model (e.g., gemma3n:e4b) downloaded
 
-## Docker ile Çalıştırma
-1. **Hostta Ollama'yı başlat:**
+## Running with Docker
+1. **Start Ollama on the host:**
    ```bash
    ollama serve
-   # veya
+   # or
    ollama run gemma3n:e4b
    ```
-2. **Docker imajını build et:**
+2. **Build the Docker image:**
    ```bash
    docker build -t tr-pdftosyntheticdata-webapp:latest .
    ```
-3. **Container'ı başlat:**
+3. **Start the container:**
    ```bash
    docker run --gpus all -p 8501:8501 -p 8000:8000 tr-pdftosyntheticdata-webapp:latest
    ```
-   > Eğer GPU'nuz yoksa `--gpus all` kısmını çıkarabilirsiniz.
+   > If you don't have a GPU, you can remove the `--gpus all` part.
 
-4. **Uygulamaya eriş:**
-   - [http://localhost:8501](http://localhost:8501) (Streamlit arayüzü)
-   - [http://localhost:8000/docs](http://localhost:8000/docs) (FastAPI dokümantasyon)
+4. **Access the application:**
+   - [http://localhost:8501](http://localhost:8501) (Streamlit interface)
+   - [http://localhost:8000/docs](http://localhost:8000/docs) (FastAPI documentation)
 
-## Kullanım
-- PDF dosyanızı yükleyin.
-- Kaç ve nasıl soru üretileceğini yazın (ör: "bana 50 tane mantıklı soru üret").
-- İsterseniz özel promptlarınızı girin veya varsayılanları kullanın. (varsayılan prompt finansal veri üretmek icin oluşturulmuştur)
-- Sonuçları ekranda görebilir ve JSON olarak indirebilirsiniz.
+## Usage
+- Upload your PDF file.
+- Specify how many and what type of questions to generate (e.g., "generate 50 logical questions for me").
+- Enter your custom prompts or use the defaults. (the default prompt is designed for generating financial data)
+- You can view the results on screen and download them as JSON.
 
-## Notlar
-- Ollama ve embedding işlemleri için GPU desteği varsa otomatik kullanılır.
-- Dockerfile ve scriptler backend hazır olmadan frontend'i başlatmaz.
-- Uygulama, finansal okuryazarlık alanında eğitim ve veri üretimi için optimize edilmiştir. 
+## Notes
+- GPU support is automatically used for Ollama and embedding processes if available.
+- Dockerfile and scripts prevent the frontend from starting before the backend is ready.
+- The application is optimized for education and data generation in the field of financial literacy.
